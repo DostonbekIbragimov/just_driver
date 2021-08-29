@@ -24,16 +24,4 @@ class BaseFunctions {
     ).output.withoutFractionDigits;
     return amount.replaceAll('.00', '');
   }
-
-
-// static String getStringByLanguage(Title value) {
-//   var lang = GetStorage().read<String>('locale') ?? 'ru';
-//   if (lang == 'ru') {
-//     return value?.ru ?? '';
-//   } else if (lang == 'en') {
-//     return value?.en ?? '';
-//   } else {
-//     return value?.uz ?? '';
-//   }
-// }
 }
