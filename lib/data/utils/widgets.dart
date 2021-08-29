@@ -4,7 +4,7 @@ import 'package:just_driver/data/utils/constants.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 Widget customButton(
-    Function() function, String text, Color? color, double radius) {
+    {required Function() function, required String text, Color? color, double? radius}) {
   return SizedBox(
     height: 60,
     width: double.infinity,
@@ -22,7 +22,7 @@ Widget customButton(
       color: color ?? colorPrimary,
       textColor: Colors.white,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(radius),
+        borderRadius: BorderRadius.circular(radius??0),
       ),
     ),
   );

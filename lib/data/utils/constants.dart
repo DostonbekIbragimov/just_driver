@@ -6,6 +6,3 @@ const colorBlack = Color(0xFF000000);
 const colorPassive = Color(0xFF94949D);
 const colorActive = Color(0xFFFF9A08);
 const mainBackground = Color(0xFFFFFFFF);
-
-
-const String BASE_URL = "http://jt.adminjw.uz/api/v1/";

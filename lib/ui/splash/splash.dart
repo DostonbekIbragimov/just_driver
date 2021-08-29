@@ -2,34 +2,25 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:just_driver/controller/splash/splash_controller.dart';
 import 'package:just_driver/data/storage/storageUtil.dart';
 import 'package:just_driver/data/utils/constants.dart';
 import 'package:just_driver/ui/auth/login.dart';
 import 'package:just_driver/ui/main/dashboard/dashboard.dart';
 
-class SplashScreen extends StatefulWidget {
-  const SplashScreen({Key? key}) : super(key: key);
-
-  @override
-  _SplashScreenState createState() => _SplashScreenState();
-}
-
-class _SplashScreenState extends State<SplashScreen> {
-  @override
-  void initState() {
-    openNextPage(context);
-    super.initState();
-  }
-
+class SplashPage extends GetView<SplashController> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: colorPrimary,
-      body: Center(
-        child: SvgPicture.asset(
-          'assets/svg/just.svg',
-          height: 80,
-          width: 120,
+    return GetBuilder<SplashController>(
+      builder: (controller) => Scaffold(
+        backgroundColor: colorPrimary,
+        body: Center(
+          child: SvgPicture.asset(
+            'assets/svg/just.svg',
+            height: 80,
+            width: 120,
+          ),
         ),
       ),
     );
