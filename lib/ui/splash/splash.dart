@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import 'package:just_driver/controller/splash/splash_controller.dart';
 import 'package:just_driver/data/storage/storageUtil.dart';
 import 'package:just_driver/data/utils/constants.dart';
-import 'package:just_driver/ui/auth/login.dart';
+import 'package:just_driver/ui/auth/login/login.dart';
 import 'package:just_driver/ui/main/dashboard/dashboard.dart';
 
 class SplashPage extends GetView<SplashController> {

@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:just_driver/bindings/login_binding.dart';
 import 'package:just_driver/bindings/main_bindings.dart';
-import 'package:just_driver/ui/auth/login.dart';
+import 'package:just_driver/ui/auth/login/login.dart';
 import 'package:just_driver/ui/main/dashboard/dashboard.dart';
 import 'package:just_driver/ui/splash/splash.dart';
 

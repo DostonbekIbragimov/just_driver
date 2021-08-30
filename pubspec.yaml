@@ -48,6 +48,8 @@ dependencies:
   keyboard_dismisser: ^2.0.0
   #alice request response watcher
   alice: ^0.2.3
+  #lottie animations
+  lottie: ^1.1.0
 
 
 dev_dependencies:
@@ -64,6 +66,7 @@ flutter:
 
   assets:
     - assets/svg/
+    - assets/animation/
 
 
   fonts:

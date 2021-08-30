@@ -14,6 +14,12 @@ part "api_client.g.dart";
 abstract class ApiClient {
   factory ApiClient(Dio dio, CancelToken cancelToken, String baseUrl) {
     dio.options = BaseOptions(receiveTimeout: 30000, connectTimeout: 30000);
+    var token = "";
+    if (StorageUtil.getToken().isEmpty) {
+      token = "isadias";
+    } else {
+      token = StorageUtil.getToken();
+    }
     var customHeaders = {
       'Content-type': 'application/json',
       'Accept': 'application/json',
@@ -22,13 +28,14 @@ abstract class ApiClient {
       'x-device-lang': "uz",
       'x-device-model': "ANDROID XIOMI",
       'x-device-os-version': "u21us",
-      'x-device-push-token': StorageUtil.getToken(),
+      'x-device-push-token': token,
       'x-device-uid': "1.0.0",
       'x-app': 'driver',
     };
     dio.options.headers.addAll(customHeaders);
     return _ApiClient(dio, baseUrl: baseUrl);
   }
+
   static Alice alice = Alice(
     showNotification: true,
     showInspectorOnShake: false,
@@ -58,7 +65,6 @@ abstract class ApiClient {
       return _apiClient!;
     }
   }
-
 
   @POST("auth/login")
   Future<LoginResponse> login(@Body() LoginRequest registerRequest);

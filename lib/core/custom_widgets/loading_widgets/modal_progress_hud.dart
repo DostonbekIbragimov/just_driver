@@ -63,7 +63,9 @@ class ModalProgressHUD extends StatelessWidget {
                     ),
                   ),
                   child: const CupertinoActivityIndicator(
-                      radius: 20, animating: true),
+                    radius: 20,
+                    animating: true,
+                  ),
                 ),
         );
       else {

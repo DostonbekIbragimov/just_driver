@@ -3,4 +3,6 @@ abstract class Routes {
   static const MAIN = '/main';
   static const LOGIN = '/login';
   static const DASHBOARD = '/dashboard_page';
+  static const REGISTER = '/register';
+  static const CONFIRM = '/confirm';
 }

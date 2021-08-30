@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:just_driver/data/utils/constants.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
-Widget customButton(
-    {required Function() function, required String text, Color? color, double? radius}) {
+Widget customButton({required Function() function,
+  required String text,
+  Color? color,
+  double? radius}) {
   return SizedBox(
     height: 60,
     width: double.infinity,
@@ -22,7 +24,7 @@ Widget customButton(
       color: color ?? colorPrimary,
       textColor: Colors.white,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(radius??0),
+        borderRadius: BorderRadius.circular(radius ?? 0),
       ),
     ),
   );
@@ -52,20 +54,23 @@ Widget customMaskTextField({
       SizedBox(
         height: 24,
       ),
-      RichText(
-        text: TextSpan(
-            style: TextStyle(
-              color: colorPrimary,
-            ),
-            children: [
-              TextSpan(
-                text: labelText,
-                style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                    fontSize: 13,
-                    color: colorPrimary),
-              )
-            ]),
+      Padding(
+        padding: const EdgeInsets.only(left: 8.0),
+        child: RichText(
+          text: TextSpan(
+              style: TextStyle(
+                color: colorPrimaryDark,
+              ),
+              children: [
+                TextSpan(
+                  text: labelText,
+                  style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                      fontSize: 14,
+                      color: colorText),
+                )
+              ]),
+        ),
       ),
       SizedBox(
         height: 4,
@@ -96,7 +101,7 @@ Widget customMaskTextField({
             // maxHeight: 40.0,
           ),
           contentPadding:
-              EdgeInsets.symmetric(vertical: 20.0, horizontal: 12.0),
+          EdgeInsets.symmetric(vertical: 20.0, horizontal: 12.0),
           focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(color: colorPrimary, width: 1),
             borderRadius: BorderRadius.circular(35),
