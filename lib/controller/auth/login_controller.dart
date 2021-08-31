@@ -32,7 +32,7 @@ class LoginController extends BaseController {
       if (result.data?.exist ?? false) {
         Get.offNamed(Routes.DASHBOARD);
       } else {
-        Get.offNamed(Routes.REGISTER);
+        Get.toNamed(Routes.REGISTER);
       }
     } else {
       showError(result);

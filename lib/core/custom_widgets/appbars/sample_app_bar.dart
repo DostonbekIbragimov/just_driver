@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:just_driver/core/theme/app_text_style.dart';
+import 'package:just_driver/core/custom_widgets/texts/custom_texts.dart';
 
 class SampleAppBar extends StatelessWidget with PreferredSizeWidget {
   final Widget? titleWidget;
@@ -21,11 +21,7 @@ class SampleAppBar extends StatelessWidget with PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: titleWidget ??
-          Text(
-            title!,
-            style: AppTextStyles.appBarTitle,
-          ),
+      title: titleWidget ?? CustomText(text: title, textSize: 20),
       centerTitle: true,
       leading: leading ?? SizedBox.shrink(),
       elevation: elevation ?? 0,
