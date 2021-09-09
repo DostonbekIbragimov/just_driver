@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:get/get_navigation/src/routes/transitions_type.dart';
+import 'package:just_driver/core/theme/app_colors.dart';
 import 'package:just_driver/routes/app_pages.dart';
 import 'package:just_driver/routes/app_routes.dart';
 import 'package:just_driver/translations/app_translations.dart';
@@ -20,6 +22,17 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle.dark.copyWith(
+        statusBarColor: Colors.white,
+        // Color for Android
+        statusBarBrightness: Brightness.dark,
+        // Dark == white status bar -- for IOS.
+       /* systemNavigationBarColor: AppColors.white,
+        systemNavigationBarIconBrightness: Brightness.dark,
+        systemNavigationBarDividerColor: AppColors.dividerColor,*/
+      ),
+    );
     return KeyboardDismisser(
       gestures: [GestureType.onTap],
       child: GetMaterialApp(

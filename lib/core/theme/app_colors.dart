@@ -15,4 +15,9 @@ class AppColors {
   static const baseText = Color(0xff818C99);
   static const passive = Color(0xFF94949D);
   static const active = Color(0xFFFF9A08);
+
+
+  static const textColor = Color(0xFF27272A);
+  static const dividerColor = Color(0x65C1C1C2);
+  static const grayColor = Color(0xFFF2F2F2);
 }
