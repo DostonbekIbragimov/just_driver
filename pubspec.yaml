@@ -62,6 +62,8 @@ dependencies:
   image_picker: ^0.8.4
   video_player: ^2.2.0
   pin_code_text_field: ^1.8.0
+  json_serializable: ^4.1.4
+  json_annotation: ^4.0.1
   #image_cropper
   #image_cropper: ^1.4.1
   #image_compresser
@@ -73,7 +75,7 @@ dev_dependencies:
     sdk: flutter
   retrofit_generator: any
   floor_generator: any
-  build_runner: ^2.0.6
+  build_runner: ^2.1.1
 
 
 flutter:
@@ -84,6 +86,7 @@ flutter:
     - assets/svg/
     - assets/png/
     - assets/animation/
+    - assets/gif/otp.gif
 
 
   fonts:

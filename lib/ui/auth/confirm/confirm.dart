@@ -6,8 +6,11 @@ import 'package:get/get_state_manager/src/simple/get_view.dart';
 import 'package:just_driver/controller/auth/confirm_controller.dart';
 import 'package:just_driver/core/custom_widgets/loading_widgets/modal_progress_hud.dart';
 import 'package:just_driver/core/custom_widgets/texts/custom_texts.dart';
+import 'package:just_driver/core/extension/string_extensions.dart';
 import 'package:just_driver/core/theme/app_colors.dart';
 import 'package:just_driver/data/utils/constants.dart';
+import 'package:just_driver/data/utils/widgets.dart';
+import 'package:lottie/lottie.dart';
 import 'package:pin_code_text_field/pin_code_text_field.dart';
 
 class ConfirmPage extends GetView<ConfirmController> {
@@ -36,10 +39,21 @@ class ConfirmPage extends GetView<ConfirmController> {
                           Padding(
                             padding: const EdgeInsets.only(left: 35.0, right: 35.0),
                             child: CustomText(
-                              text: 'Successful, Enter the code that We sent to this ${Get.arguments} number',
+                              text: 'Successful, Enter the code that We sent to this \n${toPhoneFormat(Get.arguments)} number',
+                              textSize: 18,
+                              bold: true,
                             ),
                           ),
-                          SizedBox(height: 100,),
+                          Container(
+                            height: MediaQuery.of(context).size.height / 4,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(30),
+                              child: Lottie.asset('assets/animation/pin_view.json'),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 60,
+                          ),
                           PinCodeTextField(
                             controller: controller.otpController,
                             autofocus: true,
@@ -50,6 +64,7 @@ class ConfirmPage extends GetView<ConfirmController> {
                             defaultBorderColor: AppColors.grayColor,
                             hasTextBorderColor: colorPrimary,
                             pinBoxRadius: 8.0,
+                            onTextChanged: controller.onChanged,
                             pinBoxColor: Colors.white,
                             highlightPinBoxColor: Colors.white,
                             wrapAlignment: WrapAlignment.center,
@@ -59,6 +74,16 @@ class ConfirmPage extends GetView<ConfirmController> {
                             pinTextAnimatedSwitcherTransition: ProvidedPinBoxTextAnimation.scalingTransition,
                             pinTextAnimatedSwitcherDuration: const Duration(milliseconds: 100),
                           ),
+                          SizedBox(height: 160),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 30.0, right: 30.0),
+                            child: customButton(
+                              function: controller.confirm,
+                              text: 'Confirm',
+                              radius: 10,
+                              color: controller.confirmButtonColor
+                            ),
+                          )
                         ],
                       ),
                     ),

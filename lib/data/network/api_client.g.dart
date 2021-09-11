@@ -49,4 +49,17 @@ class _ApiClient implements ApiClient {
     final value = RegisterResponse.fromJson(_result.data!);
     return value;
   }
+
+  @override
+  Future<ConfirmResponse> confirm(confirmRequest) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(confirmRequest.toJson());
+    final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<ConfirmResponse>(Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
+        .compose(_dio.options, 'auth/confirm', queryParameters: queryParameters, data: _data)
+        .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = ConfirmResponse.fromJson(_result.data!);
+    return value;
+  }
 }

@@ -1,9 +1,8 @@
-import 'dart:io';
-
 import 'package:alice/alice.dart';
 import 'package:dio/dio.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:just_driver/core/constants/constants.dart';
+import 'package:just_driver/data/models/auth/ConfirmRequest.dart';
+import 'package:just_driver/data/models/auth/ConfirmResponse.dart';
 import 'package:just_driver/data/models/auth/LoginRequest.dart';
 import 'package:just_driver/data/models/auth/LoginResponse.dart';
 import 'package:just_driver/data/models/auth/RegisterResponse.dart';
@@ -13,7 +12,6 @@ import 'package:retrofit/retrofit.dart';
 
 part "api_client.g.dart";
 
-/// Generate g file command=> flutter pub run build_runner build --delete-conflicting-outputs
 @RestApi(baseUrl: Constants.baseUrl)
 abstract class ApiClient {
   factory ApiClient(Dio dio, CancelToken cancelToken, String baseUrl) {
@@ -70,9 +68,11 @@ abstract class ApiClient {
   }
 
   @POST("auth/login")
-  Future<LoginResponse> login(@Body() LoginRequest registerRequest);
-
+  Future<LoginResponse> login(@Body() LoginRequest loginRequest);
 
   @POST("auth/register")
   Future<RegisterResponse> register(@Part() FormData file);
+
+  @POST("auth/confirm")
+  Future<ConfirmResponse> confirm(@Body() ConfirmRequest confirmRequest);
 }

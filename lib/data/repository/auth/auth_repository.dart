@@ -1,6 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:just_driver/base/base_repository.dart';
+import 'package:just_driver/data/models/auth/ConfirmRequest.dart';
+import 'package:just_driver/data/models/auth/ConfirmResponse.dart';
 import 'package:just_driver/data/models/auth/LoginRequest.dart';
 import 'package:just_driver/data/models/auth/LoginResponse.dart';
 import 'package:just_driver/data/models/auth/RegisterResponse.dart';
@@ -74,6 +76,26 @@ class AuthRepository extends BaseRepository {
       MapEntry("birth_date", birthDate),
     ]);
     final response = await _fetchRegister(request: formData);
+    if (response.data != null) {
+      return response.data;
+    } else if (response.getException()!.getErrorMessage() != "Canceled") {
+      return await getErrorMessage(response.getException()!.getErrorMessage());
+    }
+  }
+
+  Future<ResponseHandler<ConfirmResponse>> _fetchConfirm({required ConfirmRequest request}) async {
+    ConfirmResponse response;
+    try {
+      response = await apiClient.confirm(request);
+    } catch (error, stacktrace) {
+      print("Exception occurred: $error stacktrace: $stacktrace");
+      return ResponseHandler()..setException(ServerError.withError(error: error as DioError));
+    }
+    return ResponseHandler()..data = response;
+  }
+
+  Future<dynamic> confirm({required ConfirmRequest request}) async {
+    final response = await _fetchConfirm(request: request);
     if (response.data != null) {
       return response.data;
     } else if (response.getException()!.getErrorMessage() != "Canceled") {
