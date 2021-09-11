@@ -13,6 +13,7 @@ class CustomText extends StatelessWidget {
     if (bold == true) {
       return Text(
         text!,
+        textAlign: TextAlign.center,
         style: TextStyle(
           fontSize: textSize ?? 20,
           fontFamily: "SpartanMB",
@@ -23,6 +24,7 @@ class CustomText extends StatelessWidget {
     } else {
       return Text(
         text!,
+        textAlign: TextAlign.center,
         style: TextStyle(
           fontSize: textSize ?? 20,
           fontFamily: "SpartanMB",

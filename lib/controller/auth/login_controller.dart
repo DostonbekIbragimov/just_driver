@@ -25,14 +25,15 @@ class LoginController extends BaseController {
   void login() async {
     if (_loginButtonColor == AppColors.passive) return;
     setLoading(true);
+    String phone = "998${_loginController.text.replaceAll(" ", "")}";
     final request =
-        LoginRequest(phone: "998${_loginController.text.replaceAll(" ", "")}");
+        LoginRequest(phone: phone);
     final result = await _repository.login(request: request);
     if (result is LoginResponse) {
       if (result.data?.exist ?? false) {
         Get.offNamed(Routes.DASHBOARD);
       } else {
-        Get.toNamed(Routes.REGISTER);
+        Get.toNamed(Routes.REGISTER, arguments: phone);
       }
     } else {
       showError(result);

@@ -1,8 +1,12 @@
+import 'dart:io';
+
 import 'package:alice/alice.dart';
 import 'package:dio/dio.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:just_driver/core/constants/constants.dart';
 import 'package:just_driver/data/models/auth/LoginRequest.dart';
 import 'package:just_driver/data/models/auth/LoginResponse.dart';
+import 'package:just_driver/data/models/auth/RegisterResponse.dart';
 import 'package:just_driver/data/storage/storageUtil.dart';
 import 'package:retrofit/http.dart';
 import 'package:retrofit/retrofit.dart';
@@ -48,8 +52,7 @@ abstract class ApiClient {
     ///Alice chuck interceptor
     dio.interceptors.add(alice.getDioInterceptor());
 
-    dio.interceptors.add(
-        LogInterceptor(responseBody: true, requestBody: true, request: true));
+    dio.interceptors.add(LogInterceptor(responseBody: true, requestBody: true, request: true));
     return dio;
   }
 
@@ -68,4 +71,8 @@ abstract class ApiClient {
 
   @POST("auth/login")
   Future<LoginResponse> login(@Body() LoginRequest registerRequest);
+
+
+  @POST("auth/register")
+  Future<RegisterResponse> register(@Part() FormData file);
 }

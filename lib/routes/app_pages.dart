@@ -1,7 +1,9 @@
 import 'package:get/get.dart';
+import 'package:just_driver/bindings/confirm_binding.dart';
 import 'package:just_driver/bindings/login_binding.dart';
 import 'package:just_driver/bindings/main_bindings.dart';
 import 'package:just_driver/bindings/register_bindings.dart';
+import 'package:just_driver/ui/auth/confirm/confirm.dart';
 import 'package:just_driver/ui/auth/login/login.dart';
 import 'package:just_driver/ui/auth/register/register.dart';
 import 'package:just_driver/ui/main/dashboard/dashboard.dart';
@@ -26,6 +28,11 @@ class AppPages {
       name: Routes.REGISTER,
       page: () => RegisterPage(),
       binding: RegisterBinding(),
+    ),
+    GetPage(
+      name: Routes.CONFIRM,
+      page: () => ConfirmPage(),
+      binding: ConfirmBinding(),
     ),
   ];
 }

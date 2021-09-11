@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -6,7 +8,6 @@ import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:just_driver/controller/auth/register_controller.dart';
 import 'package:just_driver/core/custom_widgets/loading_widgets/modal_progress_hud.dart';
@@ -53,8 +54,18 @@ class RegisterPage extends GetView<RegisterController> {
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
-                                  InkWell(
-                                    child: SvgPicture.asset('assets/svg/add_photo.svg'),
+                                  CircleAvatar(
+                                    radius: 40,
+                                    child: ClipOval(
+                                      child: controller.photoFile != null
+                                          ? Image.file(
+                                              File(controller.photoFile!.path),
+                                              width: 100,
+                                              height: 100,
+                                              fit: BoxFit.cover,
+                                            )
+                                          : SvgPicture.asset('assets/svg/add_photo.svg'),
+                                    ),
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.only(left: 16.0),
@@ -153,7 +164,7 @@ class RegisterPage extends GetView<RegisterController> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(top: 10.0),
+                            padding: const EdgeInsets.only(top: 4.0),
                             child: customTextDate(
                               labelText: 'Birth date',
                               hintText: 'Select birth date',
@@ -167,8 +178,6 @@ class RegisterPage extends GetView<RegisterController> {
                                     minTime: DateTime(1900, 1, 1),
                                     maxTime: now,
                                     theme: DatePickerTheme(
-                                      headerColor: Colors.white,
-                                      backgroundColor: Colors.white,
                                       itemStyle: TextStyle(color: AppColors.textColor, fontWeight: FontWeight.bold, fontSize: 18, fontFamily: "Spartan-MB"),
                                       doneStyle: TextStyle(color: AppColors.textColor, fontSize: 16, fontFamily: "Spartan-MB"),
                                     ), onChanged: (date) {
@@ -182,7 +191,7 @@ class RegisterPage extends GetView<RegisterController> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.fromLTRB(25.0, 80.0, 25.0, 35.0),
+                            padding: const EdgeInsets.fromLTRB(25.0, 50.0, 25.0, 35.0),
                             child: SizedBox(
                               width: double.infinity,
                               child: customButton(
@@ -204,26 +213,6 @@ class RegisterPage extends GetView<RegisterController> {
         ),
       ),
     );
-  }
-
-  final ImagePicker _picker = ImagePicker();
-
-  Future<void> getLostData() async {
-    final LostDataResponse response = await _picker.retrieveLostData();
-    if (response.isEmpty) {
-      return;
-    }
-    if (response.file != null) {
-      setState(() {
-        if (response.type == RetrieveType.video) {
-          _handleVideo(response.file);
-        } else {
-          _handleImage(response.file);
-        }
-      });
-    } else {
-      _handleError(response.exception);
-    }
   }
 
   Future<void> _showSelectionDialog(BuildContext context) {
@@ -255,7 +244,9 @@ class RegisterPage extends GetView<RegisterController> {
                       ],
                     ),
                     onTap: () async {
-                      final XFile? photo = await _picker.pickImage(source: ImageSource.camera);
+                      controller.getImage();
+
+                      Navigator.of(context).pop();
                     },
                   ),
                   Padding(padding: EdgeInsets.all(8.0)),
@@ -276,7 +267,8 @@ class RegisterPage extends GetView<RegisterController> {
                       ],
                     ),
                     onTap: () async {
-                      final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+                      controller.getImage();
+                      Navigator.of(context).pop();
                     },
                   ),
                 ],

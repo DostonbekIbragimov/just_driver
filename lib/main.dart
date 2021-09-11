@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
         navigatorKey: ApiClient.alice.getNavigatorKey(),
         theme: appThemeData,
         debugShowCheckedModeBanner: false,
-        locale: Locale('ru'),
+        locale: Locale('uz'),
         initialBinding: MainBindings(),
         translationsKeys: AppTranslations.translations,
         defaultTransition: Transition.rightToLeft,
