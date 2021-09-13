@@ -4,7 +4,11 @@ import 'package:just_driver/core/theme/app_colors.dart';
 import 'package:just_driver/data/utils/constants.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
-Widget customButton({required Function() function, required String text, Color? color, double? radius}) {
+Widget customButton(
+    {required Function() function,
+    required String text,
+    Color? color,
+    double? radius}) {
   return SizedBox(
     height: 60,
     width: double.infinity,
@@ -29,7 +33,8 @@ Widget customButton({required Function() function, required String text, Color? 
   );
 }
 
-final maskFormatter = MaskTextInputFormatter(mask: ' ## ### ## ##', filter: {"#": RegExp(r'[0-9]')});
+final maskFormatter = MaskTextInputFormatter(
+    mask: ' ## ### ## ##', filter: {"#": RegExp(r'[0-9]')});
 
 Widget customMaskTextField({
   labelText,
@@ -63,7 +68,11 @@ Widget customMaskTextField({
               children: [
                 TextSpan(
                   text: labelText,
-                  style: TextStyle(fontWeight: FontWeight.w600, fontSize: 14, fontFamily: "SpartanMB", color: colorText),
+                  style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                      fontSize: 14,
+                      fontFamily: "SpartanMB",
+                      color: colorText),
                 )
               ]),
         ),
@@ -86,10 +95,14 @@ Widget customMaskTextField({
           filled: true,
           fillColor: Color(0xFFF9F9F9),
           prefixIcon: Padding(
-            padding: const EdgeInsets.only(left: 24.0, top: 4.7),
+            padding: const EdgeInsets.only(left: 24.0, top: 7.2),
             child: Text(
               prefixText,
-              style: TextStyle(fontSize: 18.0, color: colorBlack, fontFamily: "SpartanMB", fontWeight: FontWeight.normal),
+              style: TextStyle(
+                  fontSize: 18.0,
+                  color: colorBlack,
+                  fontFamily: "SpartanMB",
+                  fontWeight: FontWeight.normal),
             ),
           ),
           prefixIconConstraints: BoxConstraints(
@@ -97,7 +110,8 @@ Widget customMaskTextField({
             minHeight: 32.0,
             // maxHeight: 40.0,
           ),
-          contentPadding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 12.0),
+          contentPadding:
+              EdgeInsets.symmetric(vertical: 20.0, horizontal: 12.0),
           focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(color: colorPrimary, width: 1),
             borderRadius: BorderRadius.circular(35),
@@ -158,7 +172,11 @@ Widget customTextField(
               ),
               Text(
                 labelText,
-                style: TextStyle(fontWeight: FontWeight.w600, fontSize: 13, fontFamily: "SpartanMB", color: AppColors.textColor),
+                style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 13,
+                    fontFamily: "SpartanMB",
+                    color: AppColors.textColor),
               ),
               SizedBox(
                 height: 8,
@@ -175,8 +193,10 @@ Widget customTextField(
                 decoration: InputDecoration(
                     filled: true,
                     hintText: hintText,
-                    hintStyle: TextStyle(fontSize: 14.0, fontFamily: "SpartanMB"),
-                    contentPadding: EdgeInsets.symmetric(vertical: 16, horizontal: 20),
+                    hintStyle:
+                        TextStyle(fontSize: 14.0, fontFamily: "SpartanMB"),
+                    contentPadding:
+                        EdgeInsets.symmetric(vertical: 16, horizontal: 20),
                     fillColor: hasFocus
                         ? Colors.white
                         : isEmpty
@@ -187,7 +207,9 @@ Widget customTextField(
                       borderRadius: BorderRadius.circular(6),
                     ),
                     enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: isEmpty ? AppColors.grayColor : colorPrimary, width: 1),
+                      borderSide: BorderSide(
+                          color: isEmpty ? AppColors.grayColor : colorPrimary,
+                          width: 1),
                       borderRadius: BorderRadius.circular(6),
                     ),
                     errorBorder: OutlineInputBorder(

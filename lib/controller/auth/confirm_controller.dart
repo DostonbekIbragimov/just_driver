@@ -18,11 +18,15 @@ class ConfirmController extends BaseController {
   void confirm() async {
     if (_confirmButtonColor == AppColors.passive) return;
     setLoading(true);
-    final request = ConfirmRequest(phone: Get.arguments, code: _otpController.text);
+    final request =
+        ConfirmRequest(phone: Get.arguments, code: _otpController.text);
     final result = await _repository.confirm(request: request);
     if (result is ConfirmResponse) {
-      if (result.data != null) StorageUtil.setToken(result.data!.auth_token!);
-      Get.offNamed(Routes.DASHBOARD);
+      if (result.data != null) {
+        StorageUtil.setToken(result.data!.auth_token!);
+        StorageUtil.yesProfile(true);
+        Get.offNamed(Routes.DASHBOARD);
+      }
     } else {
       showError(result);
     }

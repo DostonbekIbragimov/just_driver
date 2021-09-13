@@ -16,6 +16,7 @@ import 'package:pin_code_text_field/pin_code_text_field.dart';
 class ConfirmPage extends GetView<ConfirmController> {
   @override
   Widget build(BuildContext context) {
+    FocusScope.of(context).unfocus();
     return GetBuilder<ConfirmController>(
       builder: (controller) => ModalProgressHUD(
         inAsyncCall: controller.isLoading,
